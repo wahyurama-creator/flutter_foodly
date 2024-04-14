@@ -10,7 +10,7 @@ class RestaurantItemHorizontal extends StatelessWidget {
   final String logo;
   final String title;
   final String time;
-  final int rating;
+  final double rating;
   final void Function()? onTap;
 
   const RestaurantItemHorizontal({
@@ -110,7 +110,7 @@ class RestaurantItemHorizontal extends StatelessWidget {
                   Row(
                     children: [
                       RatingBarIndicator(
-                        rating: rating.toDouble(),
+                        rating: rating,
                         itemBuilder: (context, index) => const Icon(
                           Icons.star,
                           color: kPrimary,

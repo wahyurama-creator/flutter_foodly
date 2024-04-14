@@ -13,7 +13,7 @@ class RestaurantModel extends Equatable {
   final String code;
   final String logoUrl;
   final double rating;
-  final String ratingCount;
+  final int ratingCount;
   final String verification;
   final String verificationMessage;
   final Coords coords;
