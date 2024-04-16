@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_vendor/commons/app_style.dart';
 import 'package:flutter_multi_vendor/commons/reusable_text_widget.dart';
 import 'package:flutter_multi_vendor/constants/constants.dart';
+import 'package:flutter_multi_vendor/models/foods/food_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class FoodItemVertical extends StatelessWidget {
-  final dynamic food;
+  final FoodModel food;
 
-  const FoodItemVertical({super.key, this.food});
+  const FoodItemVertical({super.key, required this.food});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class FoodItemVertical extends StatelessWidget {
                           width: 70.w,
                           height: 70.h,
                           child: Image.network(
-                            food['imageUrl'],
+                            food.imageUrl.first,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -57,7 +58,7 @@ class FoodItemVertical extends StatelessWidget {
                             height: 16.h,
                             width: width,
                             child: RatingBarIndicator(
-                              rating: food['rating'].toDouble(),
+                              rating: food.rating,
                               itemBuilder: (context, index) => const Icon(
                                 Icons.star,
                                 color: kSecondary,
@@ -76,7 +77,7 @@ class FoodItemVertical extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ReusableTextWidget(
-                        text: food['title'],
+                        text: food.title,
                         style: appStyle(
                           fontSize: 11,
                           color: kDark,
@@ -84,7 +85,7 @@ class FoodItemVertical extends StatelessWidget {
                         ),
                       ),
                       ReusableTextWidget(
-                        text: 'Delivery time: ${food['time']}',
+                        text: 'Delivery time: ${food.time}',
                         style: appStyle(
                           fontSize: 11,
                           color: kGray,
@@ -98,12 +99,12 @@ class FoodItemVertical extends StatelessWidget {
                           height: 15.h,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: food['additives'].length,
+                            itemCount: food.additives.length,
                             itemBuilder: (context, index) {
-                              var additive = food['additives'][index];
+                              var additive = food.additives[index];
                               return Container(
                                 margin: EdgeInsets.only(
-                                  right: index == food['additives'].length - 1
+                                  right: index == food.additives.length - 1
                                       ? 0
                                       : 3.w,
                                   left: index == 0 ? 0 : 3.w,
@@ -117,7 +118,7 @@ class FoodItemVertical extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.all(2.h),
                                     child: ReusableTextWidget(
-                                      text: additive['title'],
+                                      text: additive.title,
                                       style: appStyle(
                                         fontSize: 8,
                                         color: kGray,
@@ -149,7 +150,7 @@ class FoodItemVertical extends StatelessWidget {
               ),
               child: Center(
                 child: ReusableTextWidget(
-                  text: '\$ ${food['price'].toStringAsFixed(2)}',
+                  text: '\$ ${food.price.toStringAsFixed(2)}',
                   style: appStyle(
                     fontSize: 12,
                     color: kLightWhite,

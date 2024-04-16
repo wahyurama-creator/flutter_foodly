@@ -9,7 +9,7 @@ class FoodModel extends Equatable {
   final bool isAvailable;
   final String restaurant;
   final double rating;
-  final String ratingCount;
+  final int ratingCount;
   final String description;
   final double price;
   final List<Additive> additives;
@@ -106,9 +106,9 @@ class FoodModel extends Equatable {
 }
 
 class Additive extends Equatable {
-  final String id;
+  final int id;
   final String title;
-  final double price;
+  final String price;
 
   const Additive({
     required this.id,
