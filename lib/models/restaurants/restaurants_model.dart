@@ -39,24 +39,34 @@ class RestaurantModel extends Equatable {
 
   factory RestaurantModel.fromJson(Map<String, dynamic> json) {
     return RestaurantModel(
-      id: json['_id'],
-      title: json['title'],
-      time: json['time'],
-      imageUrl: json['imageUrl'],
-      foods: List<dynamic>.from(
-        json['foods'].map((x) => x),
-      ),
-      pickup: json['pickup'],
-      delivery: json['delivery'],
-      owner: json['owner'],
-      isAvailable: json['isAvailable'],
-      code: json['code'],
-      logoUrl: json['logoUrl'],
+      id: json['_id'] ?? '',
+      title: json['title'] ?? '',
+      time: json['time'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      foods: json['foods'] != null
+          ? List<dynamic>.from(json['foods'].map((x) => x))
+          : [],
+      pickup: json['pickup'] ?? false,
+      delivery: json['delivery'] ?? false,
+      owner: json['owner'] ?? '',
+      isAvailable: json['isAvailable'] ?? false,
+      code: json['code'] ?? '',
+      logoUrl: json['logoUrl'] ?? '',
       rating: json['rating']?.toDouble() ?? 0.0,
-      ratingCount: json['ratingCount'],
-      verification: json['verification'],
-      verificationMessage: json['verificationMessage'],
-      coords: Coords.fromJson(json['coords']),
+      ratingCount: json['ratingCount'] ?? 0,
+      verification: json['verification'] ?? '',
+      verificationMessage: json['verificationMessage'] ?? '',
+      coords: json['coords'] != null
+          ? Coords.fromJson(json['coords'])
+          : const Coords(
+              id: '',
+              latitude: 0.0,
+              longitude: 0.0,
+              address: '',
+              title: '',
+              latitudeDelta: 0.0,
+              longitudeDelta: 0.0,
+            ),
     );
   }
 
@@ -123,11 +133,11 @@ class Coords extends Equatable {
 
   factory Coords.fromJson(Map<String, dynamic> json) {
     return Coords(
-      id: json['id'],
+      id: json['id'] ?? '',
       latitude: json['latitude']?.toDouble() ?? 0.0,
       longitude: json['longitude']?.toDouble() ?? 0.0,
-      address: json['address'],
-      title: json['title'],
+      address: json['address'] ?? '',
+      title: json['title'] ?? '',
       latitudeDelta: json['latitudeDelta']?.toDouble() ?? 0.0,
       longitudeDelta: json['longitudeDelta']?.toDouble() ?? 0.0,
     );

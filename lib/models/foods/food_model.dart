@@ -37,31 +37,30 @@ class FoodModel extends Equatable {
 
   factory FoodModel.fromJson(Map<String, dynamic> json) {
     return FoodModel(
-      id: json['_id'],
-      title: json['title'],
-      foodTags: List<String>.from(
-        json['foodTags'].map((x) => x),
-      ),
-      foodType: List<String>.from(
-        json['foodType'].map((x) => x),
-      ),
-      code: json['code'],
-      isAvailable: json['isAvailable'],
-      restaurant: json['restaurant'],
+      id: json['_id'] ?? '',
+      title: json['title'] ?? '',
+      foodTags: json['foodTags'] != null
+          ? List<String>.from(json['foodTags'].map((x) => x))
+          : [],
+      foodType: json['foodType'] != null
+          ? List<String>.from(json['foodType'].map((x) => x))
+          : [],
+      code: json['code'] ?? '',
+      isAvailable: json['isAvailable'] ?? false,
+      restaurant: json['restaurant'] ?? '',
       rating: json['rating']?.toDouble() ?? 0.0,
-      ratingCount: json['ratingCount'],
-      description: json['description'],
+      ratingCount: json['ratingCount'] ?? 0,
+      description: json['description'] ?? '',
       price: json['price']?.toDouble() ?? 0.0,
-      additives: List<Additive>.from(
-        json['additives'].map(
-          (x) => Additive.fromJson(x),
-        ),
-      ),
-      imageUrl: List<String>.from(
-        json['imageUrl'].map((x) => x),
-      ),
-      category: json['category'],
-      time: json['time'],
+      additives: json['additives'] != null
+          ? List<Additive>.from(
+              json['additives'].map((x) => Additive.fromJson(x)))
+          : [],
+      imageUrl: json['imageUrl'] != null
+          ? List<String>.from(json['imageUrl'].map((x) => x))
+          : [],
+      category: json['category'] ?? '',
+      time: json['time'] ?? '',
     );
   }
 
@@ -118,9 +117,9 @@ class Additive extends Equatable {
 
   factory Additive.fromJson(Map<String, dynamic> json) {
     return Additive(
-      id: json['id'],
-      title: json['title'],
-      price: json['price'],
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      price: json['price'] ?? '',
     );
   }
 

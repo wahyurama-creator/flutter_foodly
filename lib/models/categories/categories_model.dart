@@ -15,10 +15,10 @@ class CategoriesModel extends Equatable {
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) {
     return CategoriesModel(
-      id: json['_id'],
-      title: json['title'],
-      value: json['value'],
-      imageUrl: json['imageUrl'],
+      id: json['_id'] ?? '',
+      title: json['title'] ?? '',
+      value: json['value'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
     );
   }
 

@@ -4,8 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomContainer extends StatelessWidget {
   final Widget containerContent;
+  final Color? backgroundColor;
 
-  const CustomContainer({super.key, required this.containerContent,});
+  const CustomContainer({
+    super.key,
+    required this.containerContent,
+    this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class CustomContainer extends StatelessWidget {
         ),
         child: Container(
           width: width,
-          color: kOffWhite,
+          color: backgroundColor ?? kOffWhite,
           child: SingleChildScrollView(
             child: containerContent,
           ),
